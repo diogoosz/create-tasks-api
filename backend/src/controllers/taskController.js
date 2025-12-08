@@ -14,7 +14,7 @@ const createTask = async (req, res) => {
 const deleteTask = async (req, res) => {
     const { id } = req.params;
     await tasksModels.deleteTask(id);
-    return res.status(204).json();
+    return res.status(204).json({ message: 'Tarefa deletada com sucesso' });
 };
 
 const updatedTask = async (req, res) => {

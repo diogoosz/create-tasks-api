@@ -13,7 +13,10 @@ const createTask = async (task) => {
     
     const [createdTask] = await connection.execute(query, [title, 'pendente', dateUTC]);
 
-    return {insertId: createdTask.insertId};
+    return {
+        message: 'Tarefa criada com sucesso!', 
+        taskId: createdTask.insertId 
+    };
 };
 
 const deleteTask = async (id) => {
