@@ -1,0 +1,7 @@
+{
+  "build": {
+    "builder": "@railway/build-new",
+    "buildCommand": "cd backend && npm install",
+    "startCommand": "cd backend && npm start"
+  }
+}
