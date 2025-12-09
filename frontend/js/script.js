@@ -53,7 +53,7 @@ async function addTask(event) {
 
 async function deleteTask(id) {
   try {
-    const resp = fetch(
+    const resp = await fetch(
       `https://create-tasks-api-production.up.railway.app/tasks/${id}`,
       {
         method: "DELETE",
