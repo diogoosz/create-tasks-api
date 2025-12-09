@@ -61,7 +61,6 @@ async function deleteTask(id) {
         headers: { "Content-Type": "application/json" },
       }
     );
-    const data = await resp.json();
     if (!resp.ok) {
       throw new error(
         `Erro ao deletar task (${resp.status}): ${
@@ -70,7 +69,6 @@ async function deleteTask(id) {
       );
     }
     loadTasks();
-    return data;
   } catch (error) {
     console.log("Não foi possivel deletar a task: ", error);
     throw error;
