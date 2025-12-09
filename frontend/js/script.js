@@ -10,8 +10,9 @@ async function fetchTasks() {
 
 const createElement = (tag, innerText = '', innerHTML = '') => {
     const element = document.createElement(tag);
-    element.innerText = innerText;
-    if (innerHTML) {
+    if (innerText) {
+        element.innerText = innerText;
+    } else {
         element.innerHTML = innerHTML;
     }
     return element;
@@ -20,13 +21,13 @@ const createElement = (tag, innerText = '', innerHTML = '') => {
 const createSelect = (value) => {
     const options = `
         <option value="pendente">Pendente</option>
-        <option value="em andamento">Em andamento</option>
+        <option value="em andamento">Em Andamento</option>
         <option value="concluída">Concluída</option>
     `;
-
+    
     const select = createElement('select', '', options);
 
-    select.value = value || 'pendente';
+    select.value = value;
 
     return select;
 }
@@ -56,5 +57,4 @@ const createRow = (task) => {
     tr.appendChild(tdStatus);
     tr.appendChild(tdCreated);
     tr.appendChild(tdActions);
-    
 }
