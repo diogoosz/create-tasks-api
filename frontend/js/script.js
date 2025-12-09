@@ -42,7 +42,7 @@ async function addTask(event) {
     if (!resp.ok) {
       throw new Error(data.message || `Erro ao criar task (${resp.status})`);
     }
-    await loadTasks();
+    loadTasks();
     inputTask.value = "";
     return data;
   } catch (error) {
@@ -69,7 +69,7 @@ async function deleteTask(id) {
         }`
       );
     }
-    await loadTasks();
+    loadTasks();
     return data;
   } catch (error) {
     console.log("Não foi possivel deletar a task: ", error);
@@ -99,7 +99,7 @@ async function updateTask({ id, title, status }) {
         }`
       );
     }
-    await loadTasks();
+    loadTasks();
     return data;
   } catch (error) {
     console.log("Não foi possivel modificar a task: ", error);
