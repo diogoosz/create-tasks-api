@@ -1,4 +1,3 @@
-import { API_URL } from "./config.js";
 const tBody = document.querySelector("tbody");
 const addForm = document.querySelector(".add-form");
 const inputTask = document.querySelector(".input-task");
