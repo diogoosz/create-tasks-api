@@ -7,7 +7,6 @@ const getAll =  async (_req, res) => {
 };
 
 const createTask = async (req, res) => {
-    console.log("REQ BODY:", req.body);
     const createTask = await tasksModels.createTask(req.body);
     return res.status(201).json(createTask);
 };

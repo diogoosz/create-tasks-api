@@ -6,7 +6,6 @@ const getAll = async () => {
 };
 
 const createTask = async (task) => {
-    console.log("MODEL RECEBEU:", task);
     const { title } = task;
     const dateUTC = new Date(Date.now()).toUTCString();
 
