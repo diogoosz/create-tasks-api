@@ -20,7 +20,7 @@ const createTask = async (task) => {
 };
 
 const deleteTask = async (id) => {
-    const [removedTask] = await connection.execute('UPDATE tasks SET deleted_at = NOW() WHERE id = ?');
+    const [removedTask] = await connection.execute('UPDATE tasks SET deleted_at = NOW() WHERE id = ?', [id]);
     return removedTask;
 };
 
