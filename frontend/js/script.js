@@ -4,14 +4,11 @@ const inputTask = document.querySelector(".input-task");
 
 async function fetchTasks() {
   try {
-    const resp = await fetch(
-      "https://create-tasks-api-production.up.railway.app/tasks",
-      {
-        method: "GET",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const resp = await fetch(`${API_URL}/tasks`, {
+      method: "GET",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+    });
     if (!resp.ok) {
       throw new Error(`Erro ao buscar tasks (${resp.status})`);
     }
@@ -26,18 +23,15 @@ async function addTask(event) {
   event.preventDefault();
   const task = { title: inputTask.value };
   try {
-    const resp = await fetch(
-      "https://create-tasks-api-production.up.railway.app/tasks",
-      {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(task),
-      }
-    );
+    const resp = await fetch(`${API_URL}/tasks`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
     const data = await resp.json();
     if (!resp.ok) {
       throw new Error(data.message || `Erro ao criar task (${resp.status})`);
@@ -53,14 +47,11 @@ async function addTask(event) {
 
 async function deleteTask(id) {
   try {
-    const resp = await fetch(
-      `https://create-tasks-api-production.up.railway.app/tasks/${id}`,
-      {
-        method: "DELETE",
-        mode: "cors",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const resp = await fetch(`${API_URL}/tasks/tasks/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+    });
     if (!resp.ok) {
       throw new error(
         `Erro ao deletar task (${resp.status}): ${
@@ -77,18 +68,15 @@ async function deleteTask(id) {
 
 async function updateTask({ id, title, status }) {
   try {
-    const resp = await fetch(
-      `https://create-tasks-api-production.up.railway.app/tasks/${id}`,
-      {
-        method: "PUT",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, status }),
-      }
-    );
+    const resp = await fetch(`${API_URL}/tasks/tasks/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, status }),
+    });
     const data = await resp.json();
     if (!resp.ok) {
       throw new Error(
@@ -143,7 +131,9 @@ const createRow = (task) => {
 
   const select = createSelect(status);
 
-  select.addEventListener('change', ({ target }) => { updateTask({ ... task, status: target.value }) });
+  select.addEventListener("change", ({ target }) => {
+    updateTask({ ...task, status: target.value });
+  });
 
   const editButton = createElement(
     "button",
@@ -156,19 +146,19 @@ const createRow = (task) => {
     '<span class="material-symbols-outlined">delete</span>'
   );
 
-  const editForm = createElement('form');
-  const editInput = createElement('input');
+  const editForm = createElement("form");
+  const editInput = createElement("input");
 
   editInput.value = title;
   editForm.appendChild(editInput);
 
-  editForm.addEventListener('submit', (event) => {
+  editForm.addEventListener("submit", (event) => {
     event.preventDefault();
     updateTask({ id, title: editInput.value, status });
   });
 
-  editButton.addEventListener('click', () => {
-    tdTitle.innerText = '';
+  editButton.addEventListener("click", () => {
+    tdTitle.innerText = "";
     tdTitle.appendChild(editForm);
   });
 
