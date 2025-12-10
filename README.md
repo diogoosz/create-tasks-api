@@ -69,11 +69,12 @@ Cria uma nova task.
 
 Substitui os dados de uma task existente.
 
-### Body (somente título --- obrigatório)
+### Body (título e status --- obrigatório)
 
 ``` json
 {
-  "title": "Novo título"
+  "title": "Novo título",
+  "status": "pendente, em andamento ou concluída",
 }
 ```
 
@@ -94,7 +95,7 @@ Remove uma task pelo ID.
     DELETE /tasks/1
     Accept: application/json
 
-### Exemplo de Resposta
+### Exemplo de Resposta (devido ao codigo de reposta ser 204 pode não ter retorno)
 
 ``` json
 {
