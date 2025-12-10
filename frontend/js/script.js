@@ -47,7 +47,7 @@ async function addTask(event) {
 
 async function deleteTask(id) {
   try {
-    const resp = await fetch(`${API_URL}/tasks/tasks/${id}`, {
+    const resp = await fetch(`${API_URL}/tasks/${id}`, {
       method: "DELETE",
       mode: "cors",
       headers: { "Content-Type": "application/json" },
@@ -68,7 +68,7 @@ async function deleteTask(id) {
 
 async function updateTask({ id, title, status }) {
   try {
-    const resp = await fetch(`${API_URL}/tasks/tasks/${id}`, {
+    const resp = await fetch(`${API_URL}/tasks/${id}`, {
       method: "PUT",
       mode: "cors",
       headers: {
