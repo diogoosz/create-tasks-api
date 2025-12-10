@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const getAll = async () => {
-    const [tasks] = await connection.execute('SELECT * FROM tasks');
+    const [tasks] = await connection.execute('SELECT * FROM tasks WHERE deleted_at IS NULL');
     return tasks;
 };
 
@@ -20,7 +20,7 @@ const createTask = async (task) => {
 };
 
 const deleteTask = async (id) => {
-    const [removedTask] = await connection.execute('DELETE FROM tasks WHERE id = ?', [id]);
+    const [removedTask] = await connection.execute('UPDATE tasks SET deleted_at = NOW() WHERE id = ?');
     return removedTask;
 };
 
