@@ -12,17 +12,17 @@
 
 <p align="center">API com LOGIN e CRUD básico de criação de tarefas</p>
 
-
+URL DO PROJETO: `https://create-tasks-api.vercel.app/login.html`
 <p align="center">
 <a href="https://github.com/diogoosz/create-tasks-api">📱 Visite o projeto</a>
 </p>
 
-<h2 id="technologies">💻 Technologies</h2>
+<h2 id="technologies">💻 Tecnologias</h2>
 
 - [![Node.js](https://skillicons.dev/icons?i=nodejs)](https://skillicons.dev)
 - [![Express.js](https://skillicons.dev/icons?i=express)](https://skillicons.dev)
 
-<h2 id="started">🚀 Getting started</h2>
+<h2 id="started">🚀 Começe aqui</h2>
 
 Como você mesmo pode rodar localmente
 
@@ -178,7 +178,7 @@ Authorization: Bearer <token>**
 }
 ```
 
-<h2 id="colab">🤝 Collaborators</h2>
+<h2 id="colab">🤝 Colaboradores</h2>
 
 <p>Agradecimentos a todas as pessoas que tornaram esse projeto possível.</p>
 <table>
