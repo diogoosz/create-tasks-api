@@ -185,7 +185,7 @@ Authorization: Bearer <token>**
 <tr>
 
 <td align="center">
-<a href="https://https://github.com/diogoosz">
+<a href="https://github.com/diogoosz">
 <img src="https://avatars.githubusercontent.com/u/103379831?s=400&u=2215e87a4d0187fcf3d433beaafd2408731456e2&v=4" width="100px;" alt="Diogo Marciano Profile Picture"/><br>
 <sub>
 <b>Diogo Marciano</b>
