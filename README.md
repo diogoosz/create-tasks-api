@@ -2,10 +2,10 @@
 <h1 align="center" style="font-weight: bold;">Create Taks API</h1>
 
 <p align="center">
-<a href="#tech">Technologies</a>
-<a href="#started">Getting Started</a>
+<a href="#tech">Tecnologias</a>
+<a href="#started">Começe a rodar</a>
 <a href="#routes">API Endpoints</a>
-<a href="#colab">Collaborators</a>
+<a href="#colab">Colaboradores</a>
 <a href="#contribute">Contribute</a> 
 </p>
 
