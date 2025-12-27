@@ -1,35 +1,36 @@
 const connection = require('./connection');
 
-const getAll = async () => {
-    const [tasks] = await connection.execute('SELECT * FROM tasks');
+const getAll = async (userId) => {
+    const [tasks] = await connection.execute('SELECT id, title, status, created_at FROM tasks WHERE user_id = ? AND deleted_at IS NULL', [userId]);
     return tasks;
 };
 
-const createTask = async (task) => {
+const createTask = async (task, userId) => {
     const { title } = task;
-    const dateUTC = new Date(Date.now()).toUTCString();
 
-    const query = 'INSERT INTO tasks (title, status, created_at) VALUES (?, ?, ?)';
+    const query = 'INSERT INTO tasks (title, status, user_id) VALUES (?, ?, ?)';
     
-    const [createdTask] = await connection.execute(query, [title, 'pendente', dateUTC]);
+    const [createdTask] = await connection.execute(query, [title, 'pendente', userId]);
+
+    const taskId = createdTask.insertId;
 
     return {
         message: 'Tarefa criada com sucesso!', 
-        taskId: createdTask.insertId 
+        taskId,
     };
 };
 
-const deleteTask = async (id) => {
-    const [removedTask] = await connection.execute('DELETE FROM tasks WHERE id = ?', [id]);
+const deleteTask = async (id, userId) => {
+    const [removedTask] = await connection.execute('UPDATE tasks SET deleted_at = NOW() WHERE id = ? AND user_id = ?', [id, userId]);
     return removedTask;
 };
 
-const updateTask = async (id, task) => {
+const updateTask = async (id, userId, task) => {
     const { title, status } = task;
     
-    const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ?';
+    const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ? AND user_id = ?';
 
-    const [updatedTask] = await connection.execute(query, [title, status, id]);
+    const [updatedTask] = await connection.execute(query, [title, status, id, userId]);
     return updatedTask;
 };
 
