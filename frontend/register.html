@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar conta</title>
+
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+  <main class="login-container">
+    <form class="register-form">
+      <h1>Criar conta</h1>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">person</span>
+        <input type="text" placeholder="Nome" required />
+      </div>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">mail</span>
+        <input type="email" placeholder="Email" required />
+      </div>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">lock</span>
+        <input type="password" placeholder="Senha" required />
+      </div>
+
+      <button type="submit">Registrar</button>
+
+      <p class="error"></p>
+
+      <p class="link">
+        Já tem conta?
+        <a href="login.html">Entrar</a>
+      </p>
+    </form>
+  </main>
+
+  <script src="./js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+
+  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+  <main class="login-container">
+    <form class="login-form">
+      <h1>Entrar</h1>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">mail</span>
+        <input type="email" placeholder="Email" required />
+      </div>
+
+      <div class="input-group">
+        <span class="material-symbols-outlined">lock</span>
+        <input type="password" placeholder="Senha" required />
+      </div>
+
+      <button type="submit">Entrar</button>
+
+      <p class="error"></p>
+      <p class="link">
+        Não tem conta?
+        <a href="register.html">Criar agora</a>
+      </p>
+    </form>
+  </main>
+
+  <script src="./js/login.js"></script>
+</body>
+</html>
