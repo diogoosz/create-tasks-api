@@ -8,6 +8,14 @@ if (!token) {
   window.location.href = "login.html";
 }
 
+const logoutBtn = document.getElementById("logout-btn");
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+});
+
+
 const API_URL = "https://create-tasks-api-production.up.railway.app";
 
 async function fetchTasks() {

@@ -106,3 +106,21 @@ select:hover {
 .btn-action:nth-child(2) {
     background-color: rgba(237, 42, 42, 0.9);
 }
+
+.logout-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+#logout-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#logout-btn:hover {
+  background-color: #dc2626;
+}
