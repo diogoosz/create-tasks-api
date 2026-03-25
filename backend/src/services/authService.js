@@ -33,6 +33,9 @@ const registerUserService = async (userData) => {
 const loginUserService = async (userData) => {
     const { email, password } = userData;
     try {
+        if (!email || !password) {
+          throw new AppError("Todos os campos são obrigatórios");
+        }
         const user = await findUserByEmail(email);
         if (!user || !(await bcrypt.compare(password, user.password))) {
             throw new AppError("Email ou senha incorretos", 401);
