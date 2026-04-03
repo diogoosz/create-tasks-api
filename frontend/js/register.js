@@ -11,7 +11,7 @@ form.addEventListener('submit', async (e) => {
 
   try {
     const resp = await fetch(
-      'https://create-tasks-api-production.up.railway.app/register',
+      'createtasks.zylochat.com.br/register',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
