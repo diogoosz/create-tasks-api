@@ -8,7 +8,7 @@ const getAll = async (userId) => {
 const getTask = async (userId, taskId) => {
     const query = 'SELECT id, title, status, created_at FROM tasks WHERE user_id = ? and id = ? AND deleted_at IS NULL';
     const [tasks] = await connection.execute(query, [userId, taskId]);
-    return tasks;
+    return tasks[0];
 };
 
 const createTask = async (task, userId) => {
