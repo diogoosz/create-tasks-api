@@ -42,6 +42,7 @@ const updateTask = async (id, userId, task) => {
 
 module.exports = {
     getAll,
+    getTask,
     createTask,
     deleteTask,
     updateTask,
