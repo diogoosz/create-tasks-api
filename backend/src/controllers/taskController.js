@@ -9,9 +9,16 @@ const getAll =  async (req, res) => {
 
 const getTask = async (req, res) => {
     const userId = req.userId;
-    const taskId = req.params.id;
-    const tasks = await tasksModels.getTask(userId, taskId);
-    return res.status(200).json(tasks);
+    const { id } = req.params; 
+    try {
+        const task = await tasksModels.getTask(userId, id);
+        if (!task) {
+            return res.status(404).json({ message: 'Tarefa não encontrada ou acesso negado.' });
+        }
+        return res.status(200).json(task);
+    } catch (error) {
+        return res.status(500).json({ message: 'Erro interno no servidor' });
+    }
 };
 
 const createTask = async (req, res) => {
