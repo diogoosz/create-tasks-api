@@ -43,6 +43,7 @@ const updatedTask = async (req, res) => {
 
 module.exports = {
     getAll,
+    getTask,
     createTask,
     deleteTask,
     updatedTask,
