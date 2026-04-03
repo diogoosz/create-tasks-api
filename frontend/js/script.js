@@ -16,7 +16,7 @@ logoutBtn.addEventListener("click", () => {
 });
 
 
-const API_URL = "https://create-tasks-api-production.up.railway.app";
+const API_URL = "createtasks.zylochat.com.br";
 
 async function fetchTasks() {
   try {
