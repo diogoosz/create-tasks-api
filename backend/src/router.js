@@ -10,6 +10,7 @@ const taskMiddleware = require("./middlewares/tasksMiddleware");
 router.post("/register", authController.registerUserController);
 router.post("/login", authController.loginUserController);
 router.get("/tasks", AuthMiddleware, taskController.getAll);
+router.get("/tasks/:id", AuthMiddleware, taskController.getTask);
 router.post("/tasks", AuthMiddleware, taskMiddleware.validateBody, taskController.createTask);
 router.delete(
   "/tasks/:id",
