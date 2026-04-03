@@ -7,7 +7,7 @@ const getAll =  async (req, res) => {
     return res.status(200).json(tasks);
 };
 
-const getTasks = async (req, res) => {
+const getTask = async (req, res) => {
     const userId = req.userId;
     const taskId = req.params.id;
     const tasks = await tasksModels.getTask(userId, taskId);
