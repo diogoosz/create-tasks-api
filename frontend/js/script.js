@@ -1,3 +1,4 @@
+<script>
 const tBody = document.querySelector("tbody");
 const addForm = document.querySelector(".add-form");
 const inputTask = document.querySelector(".input-task");
@@ -15,30 +16,41 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "login.html";
 });
 
+const API_URL = "https://createtasks.zylochat.com.br";
 
-const API_URL = "createtasks.zylochat.com.br";
+async function parseResponse(resp) {
+  const text = await resp.text();
+
+  let data = null;
+
+  try {
+    data = text ? JSON.parse(text) : null;
+  } catch {
+    throw new Error("Resposta inválida do servidor");
+  }
+
+  if (!resp.ok) {
+    throw new Error(data?.message || `Erro na requisição (${resp.status})`);
+  }
+
+  return data;
+}
 
 async function fetchTasks() {
   try {
     const resp = await fetch(`${API_URL}/tasks`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (!resp.ok) {
-      throw new Error(`Erro ao buscar tasks (${resp.status})`);
-    }
-
-    return await resp.json();
+    return await parseResponse(resp);
   } catch (error) {
     console.log("Não foi possível buscar as tasks:", error);
     throw error;
   }
 }
-
 
 async function addTask(event) {
   event.preventDefault();
@@ -57,14 +69,10 @@ async function addTask(event) {
       body: JSON.stringify({ title }),
     });
 
-    const data = await resp.json();
-
-    if (!resp.ok) {
-      throw new Error(data.message || "Erro ao criar task");
-    }
+    await parseResponse(resp);
 
     inputTask.value = "";
-    loadTasks();
+    await loadTasks();
   } catch (error) {
     console.log("Erro ao criar task:", error);
   }
@@ -79,11 +87,8 @@ async function deleteTask(id) {
       },
     });
 
-    if (!resp.ok) {
-      throw new Error(`Erro ao deletar task (${resp.status})`);
-    }
-
-    loadTasks();
+    await parseResponse(resp);
+    await loadTasks();
   } catch (error) {
     console.log("Não foi possível deletar a task:", error);
   }
@@ -100,26 +105,22 @@ async function updateTask({ id, title, status }) {
       body: JSON.stringify({ title, status }),
     });
 
-    const data = await resp.json();
-
-    if (!resp.ok) {
-      throw new Error(data.message || "Erro ao atualizar task");
-    }
-
-    loadTasks();
+    await parseResponse(resp);
+    await loadTasks();
   } catch (error) {
     console.log("Não foi possível atualizar a task:", error);
   }
 }
 
-
 const createElement = (tag, innerText = "", innerHTML = "") => {
   const element = document.createElement(tag);
+
   if (innerText) {
     element.innerText = innerText;
   } else {
     element.innerHTML = innerHTML;
   }
+
   return element;
 };
 
@@ -179,12 +180,13 @@ const createRow = (task) => {
 
   editForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    updateTask({ id, title: editInput.value, status });
+    updateTask({ id, title: editInput.value.trim(), status });
   });
 
   editButton.addEventListener("click", () => {
     tdTitle.innerText = "";
     tdTitle.appendChild(editForm);
+    editInput.focus();
   });
 
   deleteButton.addEventListener("click", () => {
@@ -203,17 +205,20 @@ const createRow = (task) => {
   return tr;
 };
 
-
 const loadTasks = async () => {
-  const tasks = await fetchTasks();
-  tBody.innerHTML = "";
+  try {
+    const tasks = await fetchTasks();
+    tBody.innerHTML = "";
 
-  tasks.forEach((task) => {
-    const tr = createRow(task);
-    tBody.appendChild(tr);
-  });
+    tasks.forEach((task) => {
+      const tr = createRow(task);
+      tBody.appendChild(tr);
+    });
+  } catch (error) {
+    console.log("Erro ao carregar tasks:", error);
+  }
 };
-
 
 addForm.addEventListener("submit", addTask);
 loadTasks();
+</script>
