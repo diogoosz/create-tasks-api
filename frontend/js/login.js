@@ -1,4 +1,3 @@
-<script>
 const form = document.querySelector('.login-form');
 const emailInput = form.querySelector('input[type="email"]');
 const passwordInput = form.querySelector('input[type="password"]');
@@ -44,4 +43,3 @@ form.addEventListener('submit', async (e) => {
     errorText.innerText = err.message;
   }
 });
-</script>
