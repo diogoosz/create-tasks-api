@@ -26,7 +26,7 @@ const registerUserService = async (userData) => {
         message: "Usuário registrado com sucesso",
     }
   } catch (err) {
-    throw err;
+    throw new AppError("Erro interno do servidor, codigo 456", 500)
   }
 };
 
