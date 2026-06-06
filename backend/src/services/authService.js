@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const registerUserService = async (userData) => {
   const { name, email, password } = userData;
     if (!name || !email || !password) {
-      throw new AppError("Todos os campos são obrigatórios");
+      throw new AppError("Todos os campos são obrigatórios", 400);
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
