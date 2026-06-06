@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 
 const registerUserService = async (userData) => {
   const { name, email, password } = userData;
-  try {
     if (!name || !email || !password) {
       throw new AppError("Todos os campos são obrigatórios");
     }
@@ -25,13 +24,6 @@ const registerUserService = async (userData) => {
         id: registeredUser.id,
         message: "Usuário registrado com sucesso",
     }
-  } catch (err) {
-    if (err instanceof AppError) {
-      throw err;
-    }
-    console.error("ERRO:", err)
-    throw new AppError("Erro interno do servidor", 500)
-  }
 };
 
 const loginUserService = async (userData) => {
