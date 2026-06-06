@@ -27,7 +27,7 @@ const registerUserService = async (userData) => {
     }
   } catch (err) {
     console.error("ERRO:", err)
-    throw new AppError("Erro interno do servidor, codigo 456", 500)
+    throw new AppError("Erro interno do servidor", 500)
   }
 };
 
