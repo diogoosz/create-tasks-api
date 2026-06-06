@@ -4,9 +4,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
-    const message = err.message || 'Erro interno no servidor';
-
-    console.error(`[ERRO]: ${message}`); // Log para o desenvolvedor
+    const message = statusCode === 500 ? 'Erro interno no servidor' : err.message;
+    if (statusCode === 500) {
+        console.error(`[ERRO INTERNO]:`, err); 
+    } else {
+        console.error(`[ERRO PREVISTO]: ${err.message}`);
+    }
 
     res.status(statusCode).json({
         status: 'error',
