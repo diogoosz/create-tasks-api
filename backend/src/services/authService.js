@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const registerUserService = async (userData) => {
   const { name, email, password } = userData;
   try {
-    if (!name | !email || !password) {
+    if (!name || !email || !password) {
       throw new AppError("Todos os campos são obrigatórios");
     }
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -26,6 +26,9 @@ const registerUserService = async (userData) => {
         message: "Usuário registrado com sucesso",
     }
   } catch (err) {
+    if (err instanceof AppError) {
+      throw err;
+    }
     console.error("ERRO:", err)
     throw new AppError("Erro interno do servidor", 500)
   }
@@ -33,7 +36,6 @@ const registerUserService = async (userData) => {
 
 const loginUserService = async (userData) => {
     const { email, password } = userData;
-    try {
         if (!email || !password) {
           throw new AppError("Todos os campos são obrigatórios");
         }
@@ -56,9 +58,6 @@ const loginUserService = async (userData) => {
             token: token,
             message: `Bem-vindo de volta, ${user.name}!`,
         }
-    } catch (err) {
-        throw err;
-    }
 }
 
 module.exports = {
